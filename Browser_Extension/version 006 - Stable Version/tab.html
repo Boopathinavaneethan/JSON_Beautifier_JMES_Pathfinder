@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JSON JMESPath Query Generator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+      transition: background-color 0.3s, color 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .textarea-container {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px; /* Reduced gap */
+      flex: 1;
+    }
+
+    textarea {
+      width: 100%;
+      height: 40vh; /* Set to 40% of the viewport height */
+      margin-bottom: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      border: 1px solid var(--textarea-border-color);
+      background-color: var(--textarea-bg-color);
+      color: var(--textarea-text-color);
+      font-size: 14px;
+      transition: background-color 0.3s, color 0.3s;
+      resize: vertical;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      background-color: var(--button-bg-color);
+      color: var(--button-text-color);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: var(--button-hover-bg-color);
+    }
+
+    #results {
+      width: 100%;
+      height: 40vh; /* Set to 40% of the viewport height */
+      overflow-y: auto;
+      background-color: var(--results-bg-color);
+      border: 1px solid var(--results-border-color);
+      padding: 10px;
+      box-sizing: border-box;
+      font-size: 14px;
+      white-space: pre-wrap;
+      border-radius: 5px;
+      transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    #themeToggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px;
+      background-color: var(--toggle-bg-color);
+      color: var(--toggle-text-color);
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    #themeToggle:hover {
+      background-color: var(--toggle-hover-bg-color);
+    }
+
+    :root {
+      --textarea-bg-color: #f9f9f9;
+      --textarea-border-color: #ddd;
+      --textarea-text-color: #333;
+      --button-bg-color: #007bff;
+      --button-text-color: white;
+      --button-hover-bg-color: #0056b3;
+      --results-bg-color: #f1f1f1;
+      --results-border-color: #ddd;
+      --toggle-bg-color: #007bff;
+      --toggle-text-color: white;
+      --toggle-hover-bg-color: #0056b3;
+      --bg-color: white;
+      --text-color: black;
+    }
+
+    body.dark-mode {
+      --textarea-bg-color: #333;
+      --textarea-border-color: #555;
+      --textarea-text-color: #f1f1f1;
+      --button-bg-color: #1a73e8;
+      --button-hover-bg-color: #0056b3;
+      --results-bg-color: #444;
+      --results-border-color: #555;
+      --toggle-bg-color: #1a73e8;
+      --toggle-hover-bg-color: #0056b3;
+      --bg-color: #121212;
+      --text-color: #f1f1f1;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    .button-container {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>JSON JMESPath Query Generator</h1>
+  <div class="container">
+    <div class="textarea-container">
+      <textarea id="jsonInput" placeholder="Paste your JSON data here..."></textarea>
+      <div class="button-container">
+        <button id="generateQueries">Generate Queries</button>
+        <button id="beautifyJson">Beautify JSON</button>
+      </div>
+    </div>
+    <h2>Results:</h2>
+    <pre id="results"></pre>
+  </div>
+  <button id="themeToggle">Switch to Dark Mode</button>
+  <script src="tab.js"></script>
+</body>
+</html>
